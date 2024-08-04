@@ -151,7 +151,7 @@ def show_guess_window(correct_number):
 if __name__ == '__main__':
     root = tk.Tk()
     root.withdraw()
-    correct_number = 6 #random.randint(1, 1000000)
+    correct_number = random.randint(1, 1000000)
     incorrect_popups = []
     escape_popups = []
     show_guess_window(correct_number)
