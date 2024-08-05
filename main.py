@@ -16,43 +16,46 @@ def play_buzzer():
     pygame.mixer.Sound.play(buzzer_sound)
 
 def not_correct(answer):
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
+    # uncomment out following code if you have an api key for openai
+    # headers = {
+    #     "Content-Type": "application/json",
+    #     "Authorization": f"Bearer {api_key}"
+    # }
     
-    payload = {
-        "model": "gpt-4o-mini",
-        "messages": [
-            {
-                "role": "system",
-                "content": """You are the game master behind a game called Negative Affirmations. The code selects a number between 1 and 1000000. 
-                by the way, the only way for them to quit is for them to restart their device (assuming they dont win), so maybe say some insults like get off the game for me, or restart your laptop already
-                Everytime I prompt you, that means the user did not get it right, and your goal is to negatively affirm the player with something very similar to any of the following:
-                Output: youre stupid, quit the game now
-                Output: you wont win, youre horrible at this game
-                Output: go ahead and log off for me
-                Output: youre as good as guessing as the worst guesser on the planet (you)
-                Output: restart your computer already you cant win
-                Output: restart your laptop already
-                (just like my examples, keep the negative affirmations at most under 15 words)"""
-            },
-            {
-                "role": "user",
-                "content": f"{answer}"
-            }
-        ],
-        "temperature": 0.5,
-        "max_tokens": 50,
-        "top_p": 0.85,
-        "frequency_penalty": 0.2,
-        "presence_penalty": 0.2
-    }
+    # payload = {
+    #     "model": "gpt-4o-mini",
+    #     "messages": [
+    #         {
+    #             "role": "system",
+    #             "content": """You are the game master behind a game called Negative Affirmations. The code selects a number between 1 and 1000000. 
+    #             by the way, the only way for them to quit is for them to restart their device (assuming they dont win), so maybe say some insults like get off the game for me, or restart your laptop already
+    #             Everytime I prompt you, that means the user did not get it right, and your goal is to negatively affirm the player with something very similar to any of the following:
+    #             Output: youre stupid, quit the game now
+    #             Output: you wont win, youre horrible at this game
+    #             Output: go ahead and log off for me
+    #             Output: youre as good as guessing as the worst guesser on the planet (you)
+    #             Output: restart your computer already you cant win
+    #             Output: restart your laptop already
+    #             (just like my examples, keep the negative affirmations at most under 15 words)"""
+    #         },
+    #         {
+    #             "role": "user",
+    #             "content": f"{answer}"
+    #         }
+    #     ],
+    #     "temperature": 0.5,
+    #     "max_tokens": 50,
+    #     "top_p": 0.85,
+    #     "frequency_penalty": 0.2,
+    #     "presence_penalty": 0.2
+    # }
     
-    response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-    response_json = response.json()
-    message_content = response_json['choices'][0]['message']['content']
-    return message_content
+    # response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+    # response_json = response.json()
+    # message_content = response_json['choices'][0]['message']['content']
+    # return message_content
+    x = ["youre stupid, quit the game now", "go ahead and log off for me", "youre as good as guessing as the worst guesser on the planet (you)", "restart your computer already you cant win"]
+    return x[random.randint(0, 3)]
 
 def show_full_screen_message():
     full_screen_win = tk.Tk()
